@@ -1,27 +1,39 @@
 class Solution:
-    def decodeString(self, s: str) -> str:
+    def decodeString(self, s) -> str:
         stack = []
-        frequencies = []
-        strings = []
+        currentString = []
+        newString = []
+        numbers = []
+        number = []
         string = []
-        frequency = []
-        openingBrackets = []
         for i in range(len(s)):
+            stack.append(s[-1])
             if s[i] == "[":
-                frequencies.append("".join(frequency))
-                frequency = []
-                openingBrackets.append(i)
-                stack.append(s[i])
+                numbers.append("".join(number))
+                number = []
+                currentString= []
             elif s[i] == "]":
-                strings.append(string)
-                string = []
-                for i in range(int(frequencies[-1])):
-                    stack.append(strings[-1])
+                string.append("".join(currentString))
+                currentString = [] 
+                number = []
+                #pop all characters from stack that form the newString
+                i = 0
+                while i < len(numbers[-1]) + 2 + len(string[-1]):
+                    stack.pop(-1)
+                    i += 1
+                # create the new string 
+                newString = [string[-1] for _ in range(int(numbers[-1]))]
+                string.pop(-1)
+                numbers.pop(-1)
+                stack.append("".join(newString))
             else:
-                string.append(s[i])
-                
-                
-                 
-            
+                if not s[i].isdigit():
+                    currentString.append(s[i])
+                if s[i].isdigit():
+                    number.append(s[i])
+        
+        return "".join(stack)
+    
 one = Solution()
-print(one.decodeString("3[a]2[bc]"))
+print(one.decodeString("3[a]2[bc]")) 
+print(one.decodeString("3[a2[c]]"))
