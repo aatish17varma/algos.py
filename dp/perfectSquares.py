@@ -10,12 +10,12 @@
 
 '''
 
-import math
+from math import sqrt,floor 
 class Solution:
     def numSquares(self, n: int) -> int: 
         dp = [0]
         for i in range(1, (n) + 1):
-            if (math.sqrt(i) - math.floor(math.sqrt(i))) == 0:
+            if (sqrt(i) - floor(sqrt(i))) == 0:
                 dp.append(1)
             else: 
                 beg = 1 
@@ -28,9 +28,23 @@ class Solution:
                 dp.append(minAnswer)
         return dp[-1] 
 
+
+    def perfectSquaresBFS(self, n) -> int:
+        queue = [(n,0)]
+        while len(queue) != 0:
+            val = queue.pop(0)
+            if val[0] == 0:
+                return val[1]
+            perfectSquares = []
+            for i in range(1,val[0] + 1):
+                if sqrt(i) - floor(sqrt(i)) == 0:
+                    perfectSquares.append(i)
+            for i in perfectSquares:
+                if val[0] - i >= 0:
+                    queue.append((val[0] - i, val[1] + 1))
+       
 one = Solution()
-print(one.numSquares(12)) 
-print(one.numSquares(13))
+print(one.perfectSquaresBFS(14))
 print(one.numSquares(14))
 
 
