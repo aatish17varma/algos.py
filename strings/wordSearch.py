@@ -12,13 +12,12 @@ class Solution:
                     hashMap[arr[i][j]] = dict()
                     hashMap[arr[i][j]][i] = [j]
        
-        print(hashMap)
         if word[0] not in hashMap:
             return False
 
         for startRow in hashMap[word[0]]:
             for startCol in hashMap[word[0]][startRow]:
-                #4 directions a word can go in
+                #2 directions a word can go in
                 broken = False
           
                 #go right
@@ -37,6 +36,7 @@ class Solution:
                 if not broken:
                     return True
         return False
+
 '''
     Time Complxity:
 
