@@ -39,11 +39,17 @@ class Solution:
         return False
 '''
     Time Complxity:
+
         hashmap = n * m time
         in the worst case, every cell could be a potential starting point, and the word can span the max
         (n * m) * ( 2 * len(word))
-        = w * (n * m)
+        = O(w * (n * m))
 
+    Space Complexity: 
+
+        in the worst case, there are m*n unique characters (no repeats), which make up the keys in the hashmap. The values are all rows and columns which is (m * n) 
+        So worst case time complexity is (m * n ) + (m * n) = O(m * n)
+    
 '''
 one = Solution()
 matrix = [
