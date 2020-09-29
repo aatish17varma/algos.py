@@ -2,7 +2,7 @@ class maxStack:
     def __init__(self):
         self.stack = []
         self.maxVal = None
-
+        
     def push(self,val):
         value = {"value" : val, "oldMax": self.maxVal} 
         if self.maxVal is None:
@@ -10,7 +10,7 @@ class maxStack:
         else:
             self.maxVal = max(self.maxVal, val)
         self.stack.append(value)
-        return 
+        return
 
     def pop(self):
         if len(self.stack) == 0:

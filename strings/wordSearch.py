@@ -18,23 +18,25 @@ class Solution:
         for startRow in hashMap[word[0]]:
             for startCol in hashMap[word[0]][startRow]:
                 #2 directions a word can go in
+
                 broken = False
-          
                 #go right
                 for i in range(startCol, startCol + len(word)):
                     if i > len(arr[0]) - 1 or arr[startRow][i] != word[i - startCol]:
-                        broken = True
+                        broken= True
                         break
                 if not broken:
                     return True
+
                 broken = False
-               #go down
+                #go down
                 for i in range(startRow, startRow + len(word)):
                     if i > len(arr) - 1 or arr[i][startCol] != word[i - startRow]:
                         broken = True
                         break
                 if not broken:
                     return True
+
         return False
 
 '''

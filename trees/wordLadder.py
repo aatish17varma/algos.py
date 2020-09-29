@@ -22,6 +22,7 @@ class Solution:
             hashMapBegin = {beginWord : 1}
             hashMapEnd = {endWord : 0}
             while len(queueBegin) > 0 and len(queueEnd) > 0:
+
                 val = queueBegin.pop(0)
                 if val in hashMapEnd:
                     return hashMapBegin[val] + hashMapEnd[val] 
@@ -31,13 +32,14 @@ class Solution:
                         queueBegin.append(i)
                         hashMapBegin[i] = hashMapBegin[val] + 1
                 
-                endVal = queueEnd.pop(0)
-                if endVal in hashMapBegin:
-                    return hashMapBegin[endVal] + hashMapEnd[endVal] 
+                val  = queueEnd.pop(0)
+                if val in hashMapBegin:
+                    return hashMapBegin[val] + hashMapEnd[val] 
+
                 for i in wordList:
-                    if difference(i,endVal) and i not in hashMapEnd:
+                    if difference(i,val) and i not in hashMapEnd:
                         queueEnd.append(i)
-                        hashMapEnd[i] = hashMapEnd[endVal] + 1
+                        hashMapEnd[i] = hashMapEnd[val] + 1
 
             return 0
 
