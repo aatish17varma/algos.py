@@ -42,10 +42,7 @@ class Solution:
             else:
                 second = l1
         return first.val or second.val
-'''
-    
-    
-
+   '''
 
     LinkedLists Looks Like:
 
