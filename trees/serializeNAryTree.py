@@ -23,19 +23,40 @@ class Codec:
             if data == "[]":
                 return None
             value = data[1 : data.index("_")]
-            listOfChildren = data[data.index("_") + 1 : len(data) - 1]
-            listOfChildren = listOfChildren.split(",")
-            childNodes = []
-            for child in listOfChildren:
-                print(child)
-                childNodes.append(helper(child))
-            newNode = Node(int(value), childNodes)
+            listOfChildren = data[data.index("_") + 1 : len(data) - 1] # [ [] , [] , [] ,]
+            #find all children using a stack and a while loop
+            stack = ["["]
+            i = 2
+            allChildren = []
+            currentChild = ["["]
+            while i < len(listOfChildren) - 1:
+                while len(stack) != 0:
+                    if listOfChildren[i] == "[":
+                        stack.append("[")
+                    elif listOfChildren[i] == "]":
+                        if len(stack) > 0:
+                            stack.pop(-1)
+                    currentChild.append(listOfChildren[i])
+                    i += 1
+                allChildren.append("".join(currentChild))
+                currentChild = ["["]
+                i += 2
+                stack = ["["]
+
+            kidNodes = []
+            for child in allChildren:
+                kidNodes.append(helper(child))
+            newNode = Node(int(value), kidNodes)
             return newNode
+
+
         return helper(data)
 
 tree = Node(1, [Node(3, [Node(5, []), Node(6,[])]), Node(2,[]), Node(4,[])])
 one = Codec()
+print("Before Serialized ")
+print(tree)
 serialized = (one.serialize(tree))
-print(serialized)
 deserialized = one.deserialize(serialized)
+print("After Serialize / Deserialize ")
 print(deserialized)
