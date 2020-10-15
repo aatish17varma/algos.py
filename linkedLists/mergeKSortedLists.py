@@ -43,6 +43,8 @@ def mergeImproved(lists):
         elif second < len(l2):
             answer += l2[second : ]
         return answer
+    if len(lists) == 1:
+        return lists[0]
 
     if len(lists) == 2:
         return merge(lists[0], lists[1])

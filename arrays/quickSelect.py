@@ -1,14 +1,26 @@
-import randint from random
-class Solution:
-    def quickSelect(self,arr,n):
-        rand = randint(0, n)
-        i = 0 
-        j = len(arr) - 1
-        while True:
-            while i < j:
-                while arr[i] <= arr[rand]: 
-                    i += 1
-                while arr[j] > arr[rand]:
-                    j -= 1 
-                arr[i], arr[j] = arr[j], arr[i] 
-         
+import random
+#def quickSelect(arr, k):
+
+def helper(arr, k, pivot, right):
+    while True:
+        left = pivot + 1
+        while left < right:
+            if arr[left] > arr[pivot] and arr[right] < arr[pivot]:
+                arr[left], arr[right] = arr[right], arr[left]
+            if arr[left] <= arr[pivot]:
+                left +=1 
+            if arr[right] >= arr[pivot]:
+                right -= 1
+
+        arr[pivot], arr[right] = arr[right], arr[pivot]
+        
+        if right == k - 1:
+            return arr[right]
+        else:
+            if right > k-1:
+                pivot = 0
+                right = k-2
+            else: #if right < k-1
+                pivot = k  
+    return None
+print(helper([3, 5, 2, 4, 6, 8],4,0,5))

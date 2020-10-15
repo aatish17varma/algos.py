@@ -51,6 +51,17 @@ class Codec:
 
 
         return helper(data)
+'''
+    Time Complexity:
+        Serialize = O(V + E)
+
+    Space Complexity:
+        Serialize = 
+
+
+
+
+'''
 
 tree = Node(1, [Node(3, [Node(5, []), Node(6,[])]), Node(2,[]), Node(4,[])])
 one = Codec()
